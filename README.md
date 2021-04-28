@@ -38,7 +38,7 @@ Program{
 
 ## Exemple of program:
 
-###program without state
+### program without state
 ```scala
 /*initial rule*/
 -- len([]) -> 0.
