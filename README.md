@@ -60,7 +60,7 @@ Program{
 }
 ```
 
-###program with state
+### program with state
 ```scala
 Compteur in number
 --
@@ -121,3 +121,4 @@ There are special commandes:
 
 ## For more information
 Si the wiki in github.
+(An other project I am working on)[https://github.com/fabriceHategekimana/predicat]
