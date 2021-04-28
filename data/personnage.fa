@@ -1,0 +1,14 @@
+/*règle dégat*/
+sub(N,D) -> Dp, sub(V,Dp) -> Vp
+--p
+<F,V,D>degat(N) -> <F,Vp,D>.
+
+/*règle heal*/
+add(V,N) -> Vp
+--
+<F,V,D>heal(N) -> <F,Vp,D>.
+
+Program{ 
+  <5,12,3>
+  heal(23);;
+}

@@ -1,0 +1,2 @@
+-- sum([])->0
+L->Lp -- sum(L) -> add(pop(Lp),sum(removeLast(Lp)))

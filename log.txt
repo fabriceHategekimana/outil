@@ -1,0 +1,159 @@
+
+evaluate expression
+------------------------EVAL
+subEval de l'expression: fact(5)
+subEval a échoué
+------------------------EE
+expression: fact(5)
+--------------------RULE
+règle choisie: ['fact(1)', '', 'fact(1)->1']
+résultat de l'union:  False
+Le fait ne match pas, on passe à la prochaine règle
+final applyRule: error
+--------------------RULE
+règle choisie: ['fact(N)', 'N>1;sub(N,1)->Np;fact(Np)->Npp', 'fact(N)->mul(N,Npp)']
+résultat de l'union:  [['N', '5']]
+premisse obtenue: N>1
+expression à tester: 5>1
+------------------------EVAL
+subEval de l'expression: 5
+résultat du test de comparaison: True
+res de N>1: [['N', '5']]
+règle accomplie
+premisse obtenue: sub(N,1)->Np
+expression à tester: sub(5,1)->Np
+------------------------EVAL
+subEval de l'expression: sub(5,1)
+résultat du test -> : 4
+res de sub(N,1)->Np: [['N', '5'], ['Np', '4']]
+règle accomplie
+premisse obtenue: fact(Np)->Npp
+expression à tester: fact(4)->Npp
+------------------------EVAL
+subEval de l'expression: fact(4)
+subEval a échoué
+------------------------EE
+expression: fact(4)
+--------------------RULE
+règle choisie: ['fact(1)', '', 'fact(1)->1']
+résultat de l'union:  False
+Le fait ne match pas, on passe à la prochaine règle
+final applyRule: error
+--------------------RULE
+règle choisie: ['fact(N)', 'N>1;sub(N,1)->Np;fact(Np)->Npp', 'fact(N)->mul(N,Npp)']
+résultat de l'union:  [['N', '4']]
+premisse obtenue: N>1
+expression à tester: 4>1
+------------------------EVAL
+subEval de l'expression: 4
+résultat du test de comparaison: True
+res de N>1: [['N', '4']]
+règle accomplie
+premisse obtenue: sub(N,1)->Np
+expression à tester: sub(4,1)->Np
+------------------------EVAL
+subEval de l'expression: sub(4,1)
+résultat du test -> : 3
+res de sub(N,1)->Np: [['N', '4'], ['Np', '3']]
+règle accomplie
+premisse obtenue: fact(Np)->Npp
+expression à tester: fact(3)->Npp
+------------------------EVAL
+subEval de l'expression: fact(3)
+subEval a échoué
+------------------------EE
+expression: fact(3)
+--------------------RULE
+règle choisie: ['fact(1)', '', 'fact(1)->1']
+résultat de l'union:  False
+Le fait ne match pas, on passe à la prochaine règle
+final applyRule: error
+--------------------RULE
+règle choisie: ['fact(N)', 'N>1;sub(N,1)->Np;fact(Np)->Npp', 'fact(N)->mul(N,Npp)']
+résultat de l'union:  [['N', '3']]
+premisse obtenue: N>1
+expression à tester: 3>1
+------------------------EVAL
+subEval de l'expression: 3
+résultat du test de comparaison: True
+res de N>1: [['N', '3']]
+règle accomplie
+premisse obtenue: sub(N,1)->Np
+expression à tester: sub(3,1)->Np
+------------------------EVAL
+subEval de l'expression: sub(3,1)
+résultat du test -> : 2
+res de sub(N,1)->Np: [['N', '3'], ['Np', '2']]
+règle accomplie
+premisse obtenue: fact(Np)->Npp
+expression à tester: fact(2)->Npp
+------------------------EVAL
+subEval de l'expression: fact(2)
+subEval a échoué
+------------------------EE
+expression: fact(2)
+--------------------RULE
+règle choisie: ['fact(1)', '', 'fact(1)->1']
+résultat de l'union:  False
+Le fait ne match pas, on passe à la prochaine règle
+final applyRule: error
+--------------------RULE
+règle choisie: ['fact(N)', 'N>1;sub(N,1)->Np;fact(Np)->Npp', 'fact(N)->mul(N,Npp)']
+résultat de l'union:  [['N', '2']]
+premisse obtenue: N>1
+expression à tester: 2>1
+------------------------EVAL
+subEval de l'expression: 2
+résultat du test de comparaison: True
+res de N>1: [['N', '2']]
+règle accomplie
+premisse obtenue: sub(N,1)->Np
+expression à tester: sub(2,1)->Np
+------------------------EVAL
+subEval de l'expression: sub(2,1)
+résultat du test -> : 1
+res de sub(N,1)->Np: [['N', '2'], ['Np', '1']]
+règle accomplie
+premisse obtenue: fact(Np)->Npp
+expression à tester: fact(1)->Npp
+------------------------EVAL
+subEval de l'expression: fact(1)
+subEval a échoué
+------------------------EE
+expression: fact(1)
+--------------------RULE
+règle choisie: ['fact(1)', '', 'fact(1)->1']
+résultat de l'union:  True
+Le fait match
+conclusion: 1
+------------------------EVAL
+subEval de l'expression: 1
+final applyRule: 1
+résultat du test -> : 1
+res de fact(Np)->Npp: [['N', '2'], ['Np', '1'], ['Npp', '1']]
+règle accomplie
+conclusion: mul(2,1)
+------------------------EVAL
+subEval de l'expression: mul(2,1)
+final applyRule: 2
+résultat du test -> : 2
+res de fact(Np)->Npp: [['N', '3'], ['Np', '2'], ['Npp', '2']]
+règle accomplie
+conclusion: mul(3,2)
+------------------------EVAL
+subEval de l'expression: mul(3,2)
+final applyRule: 6
+résultat du test -> : 6
+res de fact(Np)->Npp: [['N', '4'], ['Np', '3'], ['Npp', '6']]
+règle accomplie
+conclusion: mul(4,6)
+------------------------EVAL
+subEval de l'expression: mul(4,6)
+final applyRule: 24
+résultat du test -> : 24
+res de fact(Np)->Npp: [['N', '5'], ['Np', '4'], ['Npp', '24']]
+règle accomplie
+conclusion: mul(5,24)
+------------------------EVAL
+subEval de l'expression: mul(5,24)
+final applyRule: 120

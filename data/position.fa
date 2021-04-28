@@ -1,0 +1,26 @@
+/*gauche*/
+sub(X,1) -> Xp
+--
+<X,Y>gauche -> <Xp,Y>.
+
+/*droite*/
+add(X,1) -> Xp
+--
+<X,Y>droite -> <Xp,Y>.
+
+/*bas*/
+sub(Y,1) -> Yp
+--
+<X,Y>bas -> <X,Yp>.
+
+/*haut*/
+add(Y,1) -> Yp
+--
+<X,Y>haut -> <X,Yp>.
+
+Program{ 
+<0,0>
+	gauche;;
+}
+
+

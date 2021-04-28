@@ -1,0 +1,27 @@
+/*FACTORIELLES*/
+-- fact(1) -> 1.
+
+N > 1, sub(N,1) -> Np, fact(Np) -> Npp
+--
+fact(N) -> mul(N,Npp).
+
+/*--------------------------------*/
+/*TEST DE PARITÉ*/
+-- estPair(0) -> True.
+
+N<0
+--
+estPair(N) -> False.
+
+N>0, sub(N,2) -> Np, estPair(Np) == True
+--
+estPair(N) -> True.
+
+N>0, sub(N,2) -> Np, estPair(Np) == False
+--
+estPair(N) -> False.
+
+/*PROGRAMME*/
+Program{ 
+  fact(5);;
+}
