@@ -120,5 +120,5 @@ There are special commandes:
 - set state: set a new state to be executed.
 
 ## For more information
-Si the wiki in github.
-(An other project I am working on)[https://github.com/fabriceHategekimana/predicat]
+See the wiki in github.  
+[An other project I am working on](https://github.com/fabriceHategekimana/predicat)
