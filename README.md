@@ -13,7 +13,7 @@ pip install click
 pip install ply
 ```
 
-you can install additional package the same way if needed.  
+You can install additional package the same way if needed.  
 
 # Getting started
 The files have just the extention ".fa" but you can also open txt files if it contains the right code.   
@@ -35,6 +35,12 @@ Program{
 
 }
 ```
+
+### Spécific information
+- You can force the syntaxic coloration of the code with javascrip or scala (there are the best)
+- The tool doesn't support inline comment but it allow comment between /**/
+- each rule must be closed with a "."
+- each expression must be closed by a ";;"
 
 ## Exemple of program:
 
@@ -113,3 +119,5 @@ There are special commandes:
 - set exp: set a new expression to be executed.
 - set state: set a new state to be executed.
 
+## For more information
+Si the wiki in github.
