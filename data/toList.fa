@@ -1,2 +1,9 @@
--- toList(0) -> append([],0)
-N in number -- toList(N) -> append(toList(sub(N,1)), N)
+-- toList(0) -> append([],0).
+
+N in number
+--
+toList(N) -> append(toList(sub(N,1)), N).
+
+Program{ 
+  toList(5);;
+}

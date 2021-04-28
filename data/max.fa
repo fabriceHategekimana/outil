@@ -1,4 +1,16 @@
-A -> Ap, B -> Bp, Bp >= Ap -- max(A,B) -> Bp
-A -> Ap, B -> Bp, Ap >= Bp -- max(A,B) -> Ap
--- maxL([]) -> 0
--- maxL(L) -> max(pop(L), maxL(removeLast(L)))
+/*Max for number*/
+A -> Ap, B -> Bp, Bp >= Ap
+--
+max(A,B) -> Bp.
+
+A -> Ap, B -> Bp, Ap >= Bp
+--
+max(A,B) -> Ap.
+
+/*Max for list*/
+-- maxL([]) -> 0.
+-- maxL(L) -> max(pop(L), maxL(removeLast(L))). 
+
+Program{ 
+  maxL([2,8,5,3,7,4,3,2]);;
+}

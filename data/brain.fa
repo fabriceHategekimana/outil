@@ -1,4 +1,4 @@
-/*modify*/
+/*first trial of the first component of the brainfuck langage*/
 get(Tab,Pt) -> It, set(Tab,Pt,It) -> Tabp
 --
 modify(Tab,Pt,N) -> Tabp.

@@ -1,159 +1,153 @@
 
 evaluate expression
 ------------------------EVAL
-subEval de l'expression: fact(5)
+subEval de l'expression: sum([2,3,1])
 subEval a échoué
 ------------------------EE
-expression: fact(5)
+expression: sum([2,3,1])
 --------------------RULE
-règle choisie: ['fact(1)', '', 'fact(1)->1']
+règle choisie: ['sum([])', '', 'sum([])->0']
 résultat de l'union:  False
 Le fait ne match pas, on passe à la prochaine règle
 final applyRule: error
 --------------------RULE
-règle choisie: ['fact(N)', 'N>1;sub(N,1)->Np;fact(Np)->Npp', 'fact(N)->mul(N,Npp)']
-résultat de l'union:  [['N', '5']]
-premisse obtenue: N>1
-expression à tester: 5>1
+règle choisie: ['sum(L)', 'L->Lp', 'sum(L)->add(pop(Lp),sum(removeLast(Lp)))']
+résultat de l'union:  [['L', '[2,3,1]']]
+premisse obtenue: L->Lp
+expression à tester: [2,3,1]->Lp
 ------------------------EVAL
-subEval de l'expression: 5
-résultat du test de comparaison: True
-res de N>1: [['N', '5']]
+subEval de l'expression: [2,3,1]
+résultat du test -> : [2,3,1]
+res de L->Lp: [['L', '[2,3,1]'], ['Lp', '[2,3,1]']]
 règle accomplie
-premisse obtenue: sub(N,1)->Np
-expression à tester: sub(5,1)->Np
+conclusion: add(pop([2,3,1]),sum(removeLast([2,3,1])))
 ------------------------EVAL
-subEval de l'expression: sub(5,1)
-résultat du test -> : 4
-res de sub(N,1)->Np: [['N', '5'], ['Np', '4']]
-règle accomplie
-premisse obtenue: fact(Np)->Npp
-expression à tester: fact(4)->Npp
-------------------------EVAL
-subEval de l'expression: fact(4)
+subEval de l'expression: add(pop([2,3,1]),sum(removeLast([2,3,1])))
 subEval a échoué
 ------------------------EE
-expression: fact(4)
+expression: add(pop([2,3,1]),sum(removeLast([2,3,1])))
 --------------------RULE
-règle choisie: ['fact(1)', '', 'fact(1)->1']
-résultat de l'union:  False
-Le fait ne match pas, on passe à la prochaine règle
-final applyRule: error
---------------------RULE
-règle choisie: ['fact(N)', 'N>1;sub(N,1)->Np;fact(Np)->Npp', 'fact(N)->mul(N,Npp)']
-résultat de l'union:  [['N', '4']]
-premisse obtenue: N>1
-expression à tester: 4>1
+règle choisie: ['add(N;O)', 'N->P;O->Q', 'add(P;Q)']
+résultat de l'union:  [['N', 'pop([2,3,1])'], ['O', 'sum(removeLast([2,3,1]))']]
+premisse obtenue: N->P
+expression à tester: pop([2,3,1])->P
 ------------------------EVAL
-subEval de l'expression: 4
-résultat du test de comparaison: True
-res de N>1: [['N', '4']]
-règle accomplie
-premisse obtenue: sub(N,1)->Np
-expression à tester: sub(4,1)->Np
-------------------------EVAL
-subEval de l'expression: sub(4,1)
-résultat du test -> : 3
-res de sub(N,1)->Np: [['N', '4'], ['Np', '3']]
-règle accomplie
-premisse obtenue: fact(Np)->Npp
-expression à tester: fact(3)->Npp
-------------------------EVAL
-subEval de l'expression: fact(3)
-subEval a échoué
-------------------------EE
-expression: fact(3)
---------------------RULE
-règle choisie: ['fact(1)', '', 'fact(1)->1']
-résultat de l'union:  False
-Le fait ne match pas, on passe à la prochaine règle
-final applyRule: error
---------------------RULE
-règle choisie: ['fact(N)', 'N>1;sub(N,1)->Np;fact(Np)->Npp', 'fact(N)->mul(N,Npp)']
-résultat de l'union:  [['N', '3']]
-premisse obtenue: N>1
-expression à tester: 3>1
-------------------------EVAL
-subEval de l'expression: 3
-résultat du test de comparaison: True
-res de N>1: [['N', '3']]
-règle accomplie
-premisse obtenue: sub(N,1)->Np
-expression à tester: sub(3,1)->Np
-------------------------EVAL
-subEval de l'expression: sub(3,1)
-résultat du test -> : 2
-res de sub(N,1)->Np: [['N', '3'], ['Np', '2']]
-règle accomplie
-premisse obtenue: fact(Np)->Npp
-expression à tester: fact(2)->Npp
-------------------------EVAL
-subEval de l'expression: fact(2)
-subEval a échoué
-------------------------EE
-expression: fact(2)
---------------------RULE
-règle choisie: ['fact(1)', '', 'fact(1)->1']
-résultat de l'union:  False
-Le fait ne match pas, on passe à la prochaine règle
-final applyRule: error
---------------------RULE
-règle choisie: ['fact(N)', 'N>1;sub(N,1)->Np;fact(Np)->Npp', 'fact(N)->mul(N,Npp)']
-résultat de l'union:  [['N', '2']]
-premisse obtenue: N>1
-expression à tester: 2>1
-------------------------EVAL
-subEval de l'expression: 2
-résultat du test de comparaison: True
-res de N>1: [['N', '2']]
-règle accomplie
-premisse obtenue: sub(N,1)->Np
-expression à tester: sub(2,1)->Np
-------------------------EVAL
-subEval de l'expression: sub(2,1)
+subEval de l'expression: pop([2,3,1])
 résultat du test -> : 1
-res de sub(N,1)->Np: [['N', '2'], ['Np', '1']]
+res de N->P: [['N', 'pop([2,3,1])'], ['O', 'sum(removeLast([2,3,1]))'], ['P', '1']]
 règle accomplie
-premisse obtenue: fact(Np)->Npp
-expression à tester: fact(1)->Npp
+premisse obtenue: O->Q
+expression à tester: sum(removeLast([2,3,1]))->Q
 ------------------------EVAL
-subEval de l'expression: fact(1)
+subEval de l'expression: sum(removeLast([2,3,1]))
 subEval a échoué
 ------------------------EE
-expression: fact(1)
+expression: sum(removeLast([2,3,1]))
 --------------------RULE
-règle choisie: ['fact(1)', '', 'fact(1)->1']
+règle choisie: ['sum([])', '', 'sum([])->0']
+résultat de l'union:  False
+Le fait ne match pas, on passe à la prochaine règle
+final applyRule: error
+--------------------RULE
+règle choisie: ['sum(L)', 'L->Lp', 'sum(L)->add(pop(Lp),sum(removeLast(Lp)))']
+résultat de l'union:  [['L', 'removeLast([2,3,1])']]
+premisse obtenue: L->Lp
+expression à tester: removeLast([2,3,1])->Lp
+------------------------EVAL
+subEval de l'expression: removeLast([2,3,1])
+résultat du test -> : [2, 3]
+res de L->Lp: [['L', 'removeLast([2,3,1])'], ['Lp', '[2, 3]']]
+règle accomplie
+conclusion: add(pop([2, 3]),sum(removeLast([2, 3])))
+------------------------EVAL
+subEval de l'expression: add(pop([2, 3]),sum(removeLast([2, 3])))
+subEval a échoué
+------------------------EE
+expression: add(pop([2, 3]),sum(removeLast([2, 3])))
+--------------------RULE
+règle choisie: ['add(N;O)', 'N->P;O->Q', 'add(P;Q)']
+résultat de l'union:  [['N', 'pop([2,3])'], ['O', 'sum(removeLast([2,3]))']]
+premisse obtenue: N->P
+expression à tester: pop([2,3])->P
+------------------------EVAL
+subEval de l'expression: pop([2,3])
+résultat du test -> : 3
+res de N->P: [['N', 'pop([2,3])'], ['O', 'sum(removeLast([2,3]))'], ['P', '3']]
+règle accomplie
+premisse obtenue: O->Q
+expression à tester: sum(removeLast([2,3]))->Q
+------------------------EVAL
+subEval de l'expression: sum(removeLast([2,3]))
+subEval a échoué
+------------------------EE
+expression: sum(removeLast([2,3]))
+--------------------RULE
+règle choisie: ['sum([])', '', 'sum([])->0']
+résultat de l'union:  False
+Le fait ne match pas, on passe à la prochaine règle
+final applyRule: error
+--------------------RULE
+règle choisie: ['sum(L)', 'L->Lp', 'sum(L)->add(pop(Lp),sum(removeLast(Lp)))']
+résultat de l'union:  [['L', 'removeLast([2,3])']]
+premisse obtenue: L->Lp
+expression à tester: removeLast([2,3])->Lp
+------------------------EVAL
+subEval de l'expression: removeLast([2,3])
+résultat du test -> : [2]
+res de L->Lp: [['L', 'removeLast([2,3])'], ['Lp', '[2]']]
+règle accomplie
+conclusion: add(pop([2]),sum(removeLast([2])))
+------------------------EVAL
+subEval de l'expression: add(pop([2]),sum(removeLast([2])))
+subEval a échoué
+------------------------EE
+expression: add(pop([2]),sum(removeLast([2])))
+--------------------RULE
+règle choisie: ['add(N;O)', 'N->P;O->Q', 'add(P;Q)']
+résultat de l'union:  [['N', 'pop([2])'], ['O', 'sum(removeLast([2]))']]
+premisse obtenue: N->P
+expression à tester: pop([2])->P
+------------------------EVAL
+subEval de l'expression: pop([2])
+résultat du test -> : 2
+res de N->P: [['N', 'pop([2])'], ['O', 'sum(removeLast([2]))'], ['P', '2']]
+règle accomplie
+premisse obtenue: O->Q
+expression à tester: sum(removeLast([2]))->Q
+------------------------EVAL
+subEval de l'expression: sum(removeLast([2]))
+subEval a échoué
+------------------------EE
+expression: sum(removeLast([2]))
+--------------------RULE
+règle choisie: ['sum([])', '', 'sum([])->0']
 résultat de l'union:  True
 Le fait match
-conclusion: 1
+conclusion: 0
 ------------------------EVAL
-subEval de l'expression: 1
-final applyRule: 1
-résultat du test -> : 1
-res de fact(Np)->Npp: [['N', '2'], ['Np', '1'], ['Npp', '1']]
+subEval de l'expression: 0
+final applyRule: 0
+résultat du test -> : 0
+res de O->Q: [['N', 'pop([2])'], ['O', 'sum(removeLast([2]))'], ['P', '2'], ['Q', '0']]
 règle accomplie
-conclusion: mul(2,1)
+conclusion: 2
 ------------------------EVAL
-subEval de l'expression: mul(2,1)
+subEval de l'expression: 2
+final applyRule: 2
 final applyRule: 2
 résultat du test -> : 2
-res de fact(Np)->Npp: [['N', '3'], ['Np', '2'], ['Npp', '2']]
+res de O->Q: [['N', 'pop([2,3])'], ['O', 'sum(removeLast([2,3]))'], ['P', '3'], ['Q', '2']]
 règle accomplie
-conclusion: mul(3,2)
+conclusion: 5
 ------------------------EVAL
-subEval de l'expression: mul(3,2)
+subEval de l'expression: 5
+final applyRule: 5
+final applyRule: 5
+résultat du test -> : 5
+res de O->Q: [['N', 'pop([2,3,1])'], ['O', 'sum(removeLast([2,3,1]))'], ['P', '1'], ['Q', '5']]
+règle accomplie
+conclusion: 6
+------------------------EVAL
+subEval de l'expression: 6
 final applyRule: 6
-résultat du test -> : 6
-res de fact(Np)->Npp: [['N', '4'], ['Np', '3'], ['Npp', '6']]
-règle accomplie
-conclusion: mul(4,6)
-------------------------EVAL
-subEval de l'expression: mul(4,6)
-final applyRule: 24
-résultat du test -> : 24
-res de fact(Np)->Npp: [['N', '5'], ['Np', '4'], ['Npp', '24']]
-règle accomplie
-conclusion: mul(5,24)
-------------------------EVAL
-subEval de l'expression: mul(5,24)
-final applyRule: 120
+final applyRule: 6

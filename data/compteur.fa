@@ -1,2 +1,17 @@
-Compteur in number -- <Compteur>plus -> <add(Compteur,1)>
-Compteur in number -- <Compteur>moins -> <sub(Compteur,1)>
+Compteur in number
+--
+<Compteur>plus -> <add(Compteur,1)>.
+
+Compteur in number
+--
+<Compteur>moins -> <sub(Compteur,1)>.
+
+Program{ 
+  /*definition of the state*/
+  <0>
+  /*definition of the rule (in line or line by line)*/
+  plus;;
+  moins;;
+  plus;;
+  plus;;
+}

@@ -36,6 +36,45 @@ Program{
 }
 ```
 
+## Exemple of program:
+
+###program without state
+```scala
+/*initial rule*/
+-- len([]) -> 0.
+
+/*recursive rule*/
+L->Lp, Lp in list
+--
+len(L) -> add(1,len(removeLast(Lp))).
+
+/*PROGRAMME*/
+Program{ 
+  len([3,1,5,2]);;
+}
+```
+
+###program with state
+```scala
+Compteur in number
+--
+<Compteur>plus -> <add(Compteur,1)>.
+
+Compteur in number
+--
+<Compteur>moins -> <sub(Compteur,1)>.
+
+Program{ 
+  /*definition of the state*/
+  <0>
+  /*definition of the rule (in line or line by line)*/
+  plus;;
+  moins;;
+  plus;;
+  plus;;
+}
+```
+
 For more example you can finde some ".fa" file in the data folder of the project.  
 
 ## Run your code

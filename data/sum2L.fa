@@ -1,3 +1,11 @@
-len(A)==1, len(B)==1 -- sum2L(A,B) -> append([], add(pop(A),pop(B)))
-L1->L1p, L2->L2p -- sum2L(L1,L2) -> append(sum2L(removeLast(L1),removeLast(L2)),add(pop(L1),pop(L2)))
+len(A)==1, len(B)==1
+--
+sum2L(A,B) -> append([], add(pop(A),pop(B))).
 
+L1->L1p, L2->L2p
+--
+sum2L(L1,L2) -> append(sum2L(removeLast(L1),removeLast(L2)),add(pop(L1),pop(L2))).
+
+Program{ 
+  sum2L([1,3,4], [6,7,2]);;
+}

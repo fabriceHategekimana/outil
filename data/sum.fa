@@ -1,2 +1,8 @@
--- sum([])->0
-L->Lp -- sum(L) -> add(pop(Lp),sum(removeLast(Lp)))
+-- sum([])->0.
+L->Lp
+--
+sum(L) -> add(pop(Lp),sum(removeLast(Lp))).
+
+Program{ 
+  sum([2,3,1]);;
+}
