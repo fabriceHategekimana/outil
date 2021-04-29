@@ -1,5 +1,5 @@
-from module_evaluation import *
-from module_db import *
+from interfaces.modules.evaluation import *
+from interfaces.modules.db import *
 
 d = Data()
 

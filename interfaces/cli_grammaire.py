@@ -1,5 +1,5 @@
 from cmd import Cmd
-from module_compile import *
+from interfaces.modules.compile import *
 import re
 
 class CliGrammaire(Cmd):

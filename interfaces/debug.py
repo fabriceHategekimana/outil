@@ -1,8 +1,8 @@
 from cmd import Cmd
-from module_compile import *
+from interfaces.modules.compile import *
+from interfaces.modules.rules import *
+from interfaces.modules.network import *
 import re
-from module_rules import *
-from module_network import *
 
 class Debug(Cmd):
     prompt = 'debug>'

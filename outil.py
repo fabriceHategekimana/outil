@@ -1,7 +1,7 @@
 import click
-from interface_debug import *
-from interface_reader import *
-from interface_cli_grammaire import *
+from interfaces.debug import *
+from interfaces.reader import *
+from interfaces.cli_grammaire import *
 
 @click.command()
 @click.option('-g', '--grammar', is_flag= True, help='(do not use) lauch the interactive interface for grammar testing.')

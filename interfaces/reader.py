@@ -1,4 +1,4 @@
-from module_rules import *
+from interfaces.modules.rules import *
 
 def evaluateProgram(state, prog):
     tab= prog.split(";;")

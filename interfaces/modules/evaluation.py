@@ -1,6 +1,6 @@
-from module_compile import parser
+from interfaces.modules.compile import parser
+from interfaces.modules.db import *
 import re
-from module_db import *
 
 d= Data()
 
