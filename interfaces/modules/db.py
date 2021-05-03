@@ -23,7 +23,8 @@ class Data():
         try:
             conn= sqlite3.connect(self.nom)
         except Error as e:
-            print(e)
+            #print(e)
+            pass
         finally:
             if conn:
                 conn.close()
@@ -35,7 +36,8 @@ class Data():
            self.c.execute(CREATE_TABLE_STATE_RULES) 
            self.c.execute(CREATE_TABLE_SQLITE_SEQUENCE) 
         except Error as e:
-            print(e)
+            #print(e)
+            pass
 
     def sqlQuery(self, sql):
         tab= []

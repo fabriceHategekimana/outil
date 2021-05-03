@@ -112,7 +112,7 @@ t_EQUAL= r'\='
 t_ignore = r' '
 
 def t_NUM(t):
-    r'-?\d+'
+    r'-?\d+(.\d+)?'
     t.value = str(t.value)
     return t
 

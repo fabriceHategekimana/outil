@@ -127,7 +127,7 @@ def evaluateExpressionHelper(expression):
 def applyRule(expression, rule):
     linkCreation(expression, rule, "exp->rule")
     verbose("--------------------RULE")
-    verbose("règle choisie: %s" % rule)
+    verbose("règle choisie: %s" % rule[1]+"--"+rule[2])
     final= "error"
     allTrue= True
     substitution= union(rule[0], expression) 
@@ -168,7 +168,7 @@ def applyRule(expression, rule):
             final= subEvalState(conclusion)
         else:
             final= evaluateExpression(conclusion)
-    verbose("final applyRule: %s" % final)
+    #verbose("final applyRule: %s" % final)
     return final
 
 def subEvalState(exp):
@@ -277,7 +277,7 @@ def unionFinal(tab1,tab2):
                 final.append([tab1[i], tab2[i]])
         if final == []: # si on est tombé que sur des terminaux égaux
             final = True
-    verbose("résultat de l'union:  %s" % final)
+    #verbose("résultat de l'union:  %s" % final)
     return final
 
 def splitByExpression(exp):
