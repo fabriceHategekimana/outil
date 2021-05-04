@@ -71,7 +71,6 @@ def importRules(name):
     #an list of each statements
     sentences= f.read().replace("\n","").split(".")
     Program= deleteComment(sentences.pop())
-    #print("last line:", Program[:6])
     if Program[:7] != "Program":
         print("Error: Missing the Program section at the bottom of the page (after the rulses)")
         error= True
@@ -88,19 +87,17 @@ def importRules(name):
                 error= True
                 break
             else:
-                res= res.replace(" ", "")
                 rule= decompose(res)
-                #On insère la règle traitée
                 insertRule(rule)
     return Program, error
 
 def getStateAndExp(Program):
-    program= Program[Program.find("{")+1:Program.find("}")].replace(" ", "").replace("\t", "")
+    program= Program[Program.find("{")+1:Program.find("}")].replace("\t", "")
     separationPoint= program.find(">")
     if separationPoint != -1: #if there is a state
         state= program[:separationPoint+1]
         exp= program[separationPoint+1:]
     else:
         state= ""
-        exp= program.replace(" ", "")
+        exp= program[1:] #we delete the uselesse first character " "
     return state, exp

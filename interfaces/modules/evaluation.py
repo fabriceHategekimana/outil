@@ -106,7 +106,6 @@ def evaluateExpression(expression):
     verbose("subEval de l'expression: %s" % expression)
     res= subEval(expression) 
     if not isTerminal(res):
-        #res= pseudoEval(expression, data)
         res= evaluateExpressionHelper(expression)
         if not isTerminal:
             res= "error"
@@ -306,9 +305,17 @@ def isBoolean(exp):
         res = True
     return res
 
+def isString(exp):
+    res= myParser("isString "+exp)
+    if res == "True":
+        res = True
+    else:
+        res = False
+    return res
+    
 def isTerminal(exp):
     res= False
-    if isNumber(exp) or isList(exp) or isBoolean(exp):
+    if isNumber(exp) or isList(exp) or isBoolean(exp) or isString(exp):
         res= True
     return res
 

@@ -125,7 +125,7 @@ class Debug(Cmd):
     def createLink(self):
         goal= self.STACK.pop()
         subject= self.STACK.pop()
-        d.sqlModify("insert into links(subject,link,goal) values ('%s','%s','%s')" % (subject, " ", goal))
+        d.sqlModify("insert into links(subject,link,goal) values (\"%s\",\"%s\",\"%s\")" % (subject, " ", goal))
         self.STACK.append(subject)
         self.STACK.append(goal)
 

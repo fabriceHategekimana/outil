@@ -14,7 +14,11 @@ import sys
 #|  _| |_| | | | | (__| |_| | (_) | | | \__ \
 #|_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
                                             
-function_dict= {"add": "%s+%s", "sub":"%s-%s", "mul":"%s*%s", "div":"%s/%s", "concat":"concat(%s,%s)", "set":"set(%s,%s,%s)", "get": "%s[%s]", "insert":"insert(%s,%s)", "append":"append(%s,%s)", "remove":"remove(%s,%s)", "removeLast":"removeLast(%s)", "pop":"%s.pop()"}
+function_dict= {"add": "%s+%s", "sub":"%s-%s", "mul":"%s*%s", "div":"%s/%s", "concat":"concat(%s,%s)", "set":"set(%s,%s,%s)", "get": "%s[%s]", "insert":"insert(%s,%s)", "append":"append(%s,%s)", "remove":"remove(%s,%s)", "removeLast":"removeLast(%s)", "pop":"%s.pop()", "print":"display(%s)"}
+
+def display(a):
+    print(a)
+    return a
 
 def removeLast(l):
     l.pop()
@@ -76,6 +80,7 @@ reserved = {
         "split" : "SPLIT",
         "isList" : "ISLIST",
         "isNumber" : "ISNUMBER",
+        "isString" : "ISSTRING",
         "token" : "TOKEN",
         "state" : "STATE",
         "True" : "TRUE",
@@ -84,6 +89,7 @@ reserved = {
 
 tokens = [
     'NUM',
+    'STRING',
     'OP',
     'CP',
     'OSB',
@@ -112,7 +118,7 @@ t_EQUAL= r'\='
 t_ignore = r' '
 
 def t_NUM(t):
-    r'-?\d+(.\d+)?'
+    r'-?\d+(\.\d+)?'
     t.value = str(t.value)
     return t
 
@@ -124,6 +130,10 @@ def t_NAME(t):
 def t_VAR(t):
     r'[A-Z][a-zA-Z_0-9]*'
     t.type = reserved.get(t.value,'VAR')
+    return t
+
+def t_STRING(t):
+    r'"[^"\n]*"'
     return t
 
 def t_error(t):
@@ -146,6 +156,7 @@ def p_start(p):
           | SPLIT split
           | TOKEN token
           | ISNUMBER isnumber
+          | ISSTRING isstring
           | STATE state
     '''
     p[0]= "okay"
@@ -213,6 +224,7 @@ def p_exp3(p):
 def p_term(p):
     '''
     term : NUM
+        | STRING
         | boolean
         | list
     '''
@@ -449,6 +461,21 @@ def p_isnumber(p):
     write("True")
     p[0]= "okay"
 
+# _         _        _             
+#(_)___ ___| |_ _ __(_)_ __   __ _ 
+#| / __/ __| __| '__| | '_ \ / _` |
+#| \__ \__ \ |_| |  | | | | | (_| |
+#|_|___/___/\__|_|  |_|_| |_|\__, |
+#                            |___/ 
+
+#isstring
+
+def p_isstring(p):
+    '''
+    isstring : STRING
+    '''
+    write("True")
+    p[0]= "okay"
 
            #_      
   #___ __ _| | ___ 
@@ -506,6 +533,7 @@ def p_exp_int(p):
     '''
     c_exp : NUM
           | boolean
+          | STRING
     '''
     p[0] = str(p[1])
 
