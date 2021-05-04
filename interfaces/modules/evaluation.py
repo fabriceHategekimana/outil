@@ -16,6 +16,10 @@ def linkCreation(subject, goal, relation):
         subject= subject[:subject.find(">")+1]
     if goal.find("<") == 0: #if it's a state
         goal= goal[:goal.find(">")+1]
+    subject= subject.replace("'","")
+    relation= relation.replace("'","")
+    goal= goal.replace("'","")
+    #print("insert into links(subject,link,goal) values ('%s','%s','%s')" % (subject, relation, goal))
     d.sqlModify("insert into links(subject,link,goal) values ('%s','%s','%s')" % (subject, relation, goal))
 
 def verbose(txt, act="a"):
@@ -54,6 +58,8 @@ def symbol(statement):
         res="&in&"
     elif statement.find("==") > -1:
         res="=="
+    elif statement.find("!=") > -1:
+        res="!="
     elif statement.find(">=") > -1:
         res=">="
     elif statement.find("<=") > -1:
@@ -74,7 +80,7 @@ def test(expression, substitution, rule):
     sym= symbol(expression)
     tab= expression.split(sym)
     left= evaluateExpression(tab[0])
-    if sym in ["==",">",">=","<","<="]: # if its conditionnal test
+    if sym in ["==",">",">=","<","<=","!="]: # if its conditionnal test
         val= subEval(left+sym+tab[1])
         verbose("résultat du test de comparaison: %s" % val)
         if val == "True":
@@ -141,6 +147,7 @@ def applyRule(expression, rule):
     else: # if this is an array of substitution, go check the premises
         if rule[1] != "":
             for premise in rule[1].split(";"): #loop: premises
+                verbose("substitution: "+str(substitution))
                 verbose("premisse obtenue: %s" % premise)
                 res= test(premise, substitution, rule)
                 verbose("res de %s: %s" % (premise,res))
@@ -260,6 +267,8 @@ def unionExpression(exp1,exp2):
     exp2= exp2[exp2.find("(")+1:exp2.rfind(")")]
     tab1= splitByExpression(exp1)
     tab2= splitByExpression(exp2)
+    print("tab1",tab1)
+    print("tab2",tab2)
     return unionFinal(tab1, tab2)
 
 def unionFinal(tab1,tab2):
@@ -348,16 +357,17 @@ def verifiable(exp,dico):
     return res, dico
 
 def complete(exp, tab):
+    #print("tab:", tab)
     dico= tabToDic(tab)
     sym= symbol(exp)
-    #if sym == "->": # si c'est une expressison de conclusion
-        #exp= exp.split(sym)[1]
     tokens= getToken(exp) #token est un tableau des différentes partie de l'expression
+    #print("tokens:", tokens)
     for i in range(len(tokens)):
         tokens[i]= dico.get(tokens[i], tokens[i]) #On remplace si'il y a un moyen de remplacer
     if "in" in tokens:
         tokens = ['&in&' if i=='in' else i for i in tokens] # pour que le "in" ne soit pas collé aux voisins
     exp= "".join(tokens)
+    #print("exp:", exp)
     return exp
 
 def tabToDic(tab):
@@ -371,6 +381,7 @@ def getToken(exp):
     return tokens
 
 def subEval(exp):
+    verbose(exp)
     res= myParser("calc "+exp)
     if res == "error":
         verbose("subEval a échoué")

@@ -1,0 +1,58 @@
+/*règle d'ajout dans la base*/
+append(D,A)->Dp, append(Dp,B)->Dpp,append(Dpp,C)->Dppp
+--
+<D>fact(A,B,C) -> <Dppp>.
+
+/*Teste si le fait se trouve dans la base*/
+inBaseHelper(0,D,A,B,C) -> Rp,print(Rp)->P
+--
+<D>mycheck(A,B,C) -> <D>.
+
+/*Teste si on est en dehors de la base*/
+add(N,2)->Np,len(D)->L,Np<L
+--
+out(N,D) -> False.
+
+add(N,2)->Np,len(D)->L,Np>=L
+--
+out(N,D) -> True.
+
+/*Transformer les trois éléments en liste*/
+append(append(append([],A),B),C) -> L
+--
+toTriple(A,B,C) -> L.
+
+/*Trouver les trois prochaines occurences*/
+get(D,N)->A,get(D,add(N,1))->B,get(D,add(N,2))->C, toTriple(A,B,C) -> L
+--
+getTriple(D,N) -> L.
+
+/*Teste, si le fait se trouve bien dans l'index*/
+getTriple(D,N) -> L, toTriple(A,B,C) -> Lp, L == Lp
+--
+match(N,D,A,B,C) -> True.
+
+/*Teste, si le fait se trouve bien dans l'index*/
+getTriple(D,N) -> L, toTriple(A,B,C) -> Lp, L != Lp
+--
+match(N,D,A,B,C) -> False.
+
+/*Teste si le fait se trouve dans la base*/
+out(N,D) == True
+--
+inBaseHelper(N,D,A,B,C) -> False.
+
+out(N,D) == False, match(N,D,A,B,C) == True
+--
+inBaseHelper(N,D,A,B,C) -> True.
+
+out(N,D) == False, match(N,D,A,B,C) == False, add(N,3) -> Np
+--
+inBaseHelper(N,D,A,B,C) -> inBaseHelper(Np,D,A,B,C).
+
+Program{ 
+	<[]>
+	fact("socrate","est","homme");;
+	fact("socrate","est","mortel");;
+	mycheck("socrate","est","homme");;
+}

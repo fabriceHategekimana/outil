@@ -14,7 +14,14 @@ import sys
 #|  _| |_| | | | | (__| |_| | (_) | | | \__ \
 #|_|  \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
                                             
-function_dict= {"add": "%s+%s", "sub":"%s-%s", "mul":"%s*%s", "div":"%s/%s", "concat":"concat(%s,%s)", "set":"set(%s,%s,%s)", "get": "%s[%s]", "insert":"insert(%s,%s)", "append":"append(%s,%s)", "remove":"remove(%s,%s)", "removeLast":"removeLast(%s)", "pop":"%s.pop()", "print":"display(%s)"}
+function_dict= {"add": "%s+%s", "sub":"%s-%s", "mul":"%s*%s", "div":"%s/%s", "concat":"concat(%s,%s)", "set":"set(%s,%s,%s)", "get": "get(%s,%s)", "insert":"insert(%s,%s)", "append":"append(%s,%s)", "remove":"remove(%s,%s)", "removeLast":"removeLast(%s)", "pop":"%s.pop()", "print":"display(%s)", "len":"len(%s)"}
+
+
+def get(l,i):
+    res= l[i]
+    if isinstance(res,str):
+        res= "'"+res+"'"
+    return res
 
 def display(a):
     print(a)
@@ -101,7 +108,8 @@ tokens = [
     'SUP',
     'MINUS',
     'VAR',
-    'NAME'
+    'NAME',
+    'EXC'
         ]+list(reserved.values())
 
 t_OP= r'\('
@@ -114,6 +122,7 @@ t_INF= r'\<'
 t_SUP= r'\>'
 t_MINUS= r'\-'
 t_EQUAL= r'\='
+t_EXC= r'\!'
 
 t_ignore = r' '
 
@@ -133,7 +142,7 @@ def t_VAR(t):
     return t
 
 def t_STRING(t):
-    r'"[^"\n]*"'
+    r'("[^"\n]*"|\'[^\'\n]*\')'
     return t
 
 def t_error(t):
@@ -249,6 +258,7 @@ def p_list2(p):
 def p_symb(p):
     '''
     symb : EQUAL EQUAL
+         | EXC EQUAL
          | INF EQUAL
          | SUP EQUAL
          | INF
@@ -382,6 +392,7 @@ def p_t_term(p):
     t_term : NUM
            | boolean
            | t_list
+           | STRING
     '''
     res= "".join(p[1:])
     p[0]= res
@@ -508,6 +519,7 @@ def p_condition(p):
 def p_comparator(p):
     '''
     comparator : EQUAL EQUAL
+               | EXC EQUAL
                | SUP
                | SUP EQUAL
                | INF

@@ -8,8 +8,8 @@ RULES= [
         ['sub(N;O)', 'N->P;O->Q', 'sub(P;Q)'],
         ['mul(N;O)', 'N->P;O->Q', 'mul(P;Q)'],
         ['div(N;O)', 'N->P;O->Q', 'div(P;Q)'],
-        ['get(L)', 'L->Lp', 'get(Lp)'],
-        ['set(L,N)', 'Li->Lp;N->Np', 'set(Lp;Np)'],
+        ['get(L,N)', 'L->Lp;N->Np', 'get(Lp,Np)'],
+        ['set(L,N,V)', 'Li->Lp;N->Np;V->Vp', 'set(Lp;Np;Vp)'],
         ['append(L,N)', 'L->Lp;N->Np', 'append(Lp;Np)'],
         ['insert(L,N)', 'L->Lp;N->Np', 'insert(Lp;Np)'],
         ['remove(L,N)', 'L->Lp;N->Np', 'remove(Lp;Np)'],
@@ -35,7 +35,6 @@ def syntaxChecking(exp):
 def decompose(exp):
     tab= exp.split("--")
     entete= tab[1].split(symbol(tab[1]))[0]
-    #print([entete, tab[0], tab[1]])
     return [entete, tab[0], tab[1]]
 
 def getRules():
@@ -77,10 +76,8 @@ def importRules(name):
     if error == False:
         #Pour chaque ligne on test si la règle est juste puis on continue
         for line in sentences:
-            #print("line:", line)
             if line.find("/*") != -1:
                 line= deleteComment(line)
-                #print("line modified:", line)
             res= syntaxChecking(line)
             if res[0] == "&":
                 print("Error : '"+line[:-1]+"' \n"+res[1:])
@@ -95,7 +92,7 @@ def getStateAndExp(Program):
     program= Program[Program.find("{")+1:Program.find("}")].replace("\t", "")
     separationPoint= program.find(">")
     if separationPoint != -1: #if there is a state
-        state= program[:separationPoint+1]
+        state= program[1:separationPoint+1] #we delete the uselesse first character " "
         exp= program[separationPoint+1:]
     else:
         state= ""

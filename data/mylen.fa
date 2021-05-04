@@ -1,12 +1,12 @@
 /*initial rule*/
--- len([]) -> 0.
+-- mylen([]) -> 0.
 
 /*recursive rule*/
 L->Lp, Lp in list
 --
-len(L) -> add(1,len(removeLast(Lp))).
+mylen(L) -> add(1,mylen(removeLast(Lp))).
 
 /*PROGRAMME*/
 Program{ 
-  len([3,1,5,2]);;
+  mylen([3,1,5,2]);;
 }
