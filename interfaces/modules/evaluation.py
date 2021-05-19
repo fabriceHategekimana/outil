@@ -253,8 +253,6 @@ def unionState(exp1, exp2):
     exp2= toTuple(exp2)
     tab1= exp1.split("&&")
     tab2= exp2.split("&&")
-    verbose("tab1 %s" % tab1)
-    verbose("tab2 %s" % tab2)
     return unionFinal(tab1, tab2)
 
 def toTuple(exp):
@@ -267,8 +265,6 @@ def unionExpression(exp1,exp2):
     exp2= exp2[exp2.find("(")+1:exp2.rfind(")")]
     tab1= splitByExpression(exp1)
     tab2= splitByExpression(exp2)
-    print("tab1",tab1)
-    print("tab2",tab2)
     return unionFinal(tab1, tab2)
 
 def unionFinal(tab1,tab2):

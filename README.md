@@ -8,9 +8,7 @@ Just download the project and it is ready to use.
 This project isn't complete and is still purelly written in python. You will need to install some dependency with pip:  
 
 ```bash
-pip install pyvis
-pip install click
-pip install ply
+pip install -r requirements.txt
 ```
 
 You can install additional package the same way if needed.  

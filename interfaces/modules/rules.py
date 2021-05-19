@@ -3,6 +3,7 @@ from interfaces.modules.db import *
 
 d = Data()
 
+#The basic rules with a security (to avoid a problem when the user put some undevelopped expressions)
 RULES= [
         ['add(N;O)', 'N->P;O->Q', 'add(P;Q)'],
         ['sub(N;O)', 'N->P;O->Q', 'sub(P;Q)'],
@@ -59,7 +60,7 @@ def deleteComment(line):
 
 def importRules(name):
     VERBOSE= verbose
-    #On vide les bases de données
+    #we delete the content of each table of the database
     d.sqlModify("delete from exp_rules")
     d.sqlModify("delete from state_rules")
     d.sqlModify("delete from links")
@@ -67,7 +68,7 @@ def importRules(name):
     error= False
     #On ouvre le fichier
     f = open(name, "r")
-    #an list of each statements
+    #a list of each statements
     sentences= f.read().replace("\n","").split(".")
     Program= deleteComment(sentences.pop())
     if Program[:7] != "Program":
@@ -88,6 +89,12 @@ def importRules(name):
                 insertRule(rule)
     return Program, error
 
+def deleteFirstWhiteSpaces(program):
+    i= 0
+    while(program[i]==' '): 
+        i += 1
+    return program[i:]
+
 def getStateAndExp(Program):
     program= Program[Program.find("{")+1:Program.find("}")].replace("\t", "")
     separationPoint= program.find(">")
@@ -96,5 +103,5 @@ def getStateAndExp(Program):
         exp= program[separationPoint+1:]
     else:
         state= ""
-        exp= program[1:] #we delete the uselesse first character " "
+        exp= deleteFirstWhiteSpaces(program) #we delete the uselesse first character " "
     return state, exp
